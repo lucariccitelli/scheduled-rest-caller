@@ -13,7 +13,9 @@ import it.lucariccitelli.scheduledrestcaller.dao.entity.RestCall;
  */
 public interface RestCallRepository extends JpaRepository<RestCall, Long> {
 
-	List<RestCall> findBySendStatusAndCreatedDateAfterOrderByCreatedDateAsc(String status, Date createdDate);
+	public List<RestCall> findBySendStatusAndCreatedDateAfterOrderByCreatedDateAsc(String status, Date createdDate);
+	
+	void deleteByCreatedDateBefore(Date date);
 
 	default void softDelete(RestCall entity) {
 		entity.setActiveStatus("D");
